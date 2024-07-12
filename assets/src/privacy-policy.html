@@ -26,6 +26,10 @@
             </a>
         </div>
     </div>
+
+<!-- Topbar Navigation Placeholder -->
+<div id="topbar-container"></div>
+
 <h1>Privacy Policy</h1>
 <div class="content">
     <p>Last updated: July 2, 2024</p>
@@ -61,6 +65,15 @@
     </div>
  <!-- JS functions - Social buttons, Bookmar, Load Footer -->
  <script>
+    function loadTopbar() {
+            fetch('topbarnav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('topbar-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading topbar:', error));
+        }
+
     function loadFooter() {
         fetch('footer.html')
             .then(response => response.text())
@@ -83,6 +96,7 @@
         document.getElementById('instagram-share').href = instagramShareURL;
 
         loadFooter(); // Call loadFooter function here to ensure it's not overwritten
+        loadTopbar();
     });
 
     function bookmarkSite() {

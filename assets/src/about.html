@@ -27,6 +27,9 @@
         </div>
     </div>
 
+    <!-- Topbar Navigation Placeholder -->
+    <div id="topbar-container"></div>
+
 <h1>About Us</h1>
 <div class="content">
     <p>We're a free Bitcoin price website that is fully decentralized and running on the <a href="https://internetcomputer.org/" target="_blank">Internet Computer blockchain</a>! If you think that this is cool, please, use the social buttons below to share this site with friends!</p>
@@ -34,6 +37,15 @@
 </div>
  <!-- JS functions - Social buttons, Bookmar, Load Footer -->
  <script>
+    function loadTopbar() {
+            fetch('topbarnav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('topbar-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading topbar:', error));
+        }
+
     function loadFooter() {
         fetch('footer.html')
             .then(response => response.text())
@@ -56,6 +68,7 @@
         document.getElementById('instagram-share').href = instagramShareURL;
 
         loadFooter(); // Call loadFooter function here to ensure it's not overwritten
+        loadTopbar();
     });
 
     function bookmarkSite() {

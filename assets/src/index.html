@@ -7,14 +7,6 @@
     <title>Bitcoin Price Today (USD)</title>
     <link rel="stylesheet" href="base.css" type="text/css" media="all" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .bookmark-icon {
-            cursor: pointer;
-            margin-left: 10px;
-            color: yellow;
-            font-size: 24px;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -348,6 +340,7 @@
             document.getElementById('instagram-share').href = instagramShareURL;
 
             loadFooter(); // Call loadFooter function here to ensure it's not overwritten
+            loadTopbar();
         });
 
         function bookmarkSite() {

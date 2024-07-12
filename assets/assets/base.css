@@ -44,17 +44,20 @@ body {
 }
 
 .topbar .nav-links li {
-    margin: 0 15px;
+    margin: 0 10px;
 }
 
 .topbar .nav-links a {
-    color: #fff;
+    color: goldenrod;
     text-decoration: none;
     font-size: 16px;
+    padding: 5px 20px; /* Add padding to make the entire rectangle around the link larger */
+    display: block; /* Ensure the link takes up the entire area of the li element */
+    border-radius: 5px; /* Optional: add rounded corners */
 }
 
 .topbar .nav-links a:hover {
-    text-decoration: underline;
+    background-color: #fcdcb1; /* Change the background color on hover */
 }
 
 .social-icons {
