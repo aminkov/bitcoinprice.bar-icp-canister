@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="About Us"/>
+<title>About Us - BitcoinPrice.Bar</title>
+<link rel="stylesheet" href="base.css" type="text/css" media="all" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+    <div class="social-icons">
+        <div class="social-buttons">
+            <a href="#" id="twitter-share" target="_blank" class="social-button twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" id="facebook-share" target="_blank" class="social-button facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" id="linkedin-share" target="_blank" class="social-button linkedin">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" id="instagram-share" target="_blank" class="social-button instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+
+<h1>About Us</h1>
+<div class="content">
+    <p>We're a free Bitcoin price website that is fully decentralized and running on the <a href="https://internetcomputer.org/" target="_blank">Internet Computer blockchain</a>! If you think that this is cool, please, use the social buttons below to share this site with friends!</p>
+    <div id="footer-container"></div>
+</div>
+ <!-- JS functions - Social buttons, Bookmar, Load Footer -->
+ <script>
+    function loadFooter() {
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const currentURL = encodeURIComponent(window.location.href);
+        const twitterShareURL = `https://twitter.com/intent/tweet?url=${currentURL}`;
+        const facebookShareURL = `https://www.facebook.com/sharer/sharer.php?u=${currentURL}`;
+        const linkedInShareURL = `https://www.linkedin.com/shareArticle?mini=true&url=${currentURL}&title=Bitcoin+Price+Today&summary=Check+out+the+current+Bitcoin+price`;
+        const instagramShareURL = `https://www.instagram.com/?url=${currentURL}`; // Instagram doesn't support direct sharing
+
+        document.getElementById('twitter-share').href = twitterShareURL;
+        document.getElementById('facebook-share').href = facebookShareURL;
+        document.getElementById('linkedin-share').href = linkedInShareURL;
+        document.getElementById('instagram-share').href = instagramShareURL;
+
+        loadFooter(); // Call loadFooter function here to ensure it's not overwritten
+    });
+
+    function bookmarkSite() {
+        const title = document.title;
+        const url = window.location.href;
+        if (window.sidebar && window.sidebar.addPanel) { // Firefox <=22
+            window.sidebar.addPanel(title, url, '');
+        } else if ((window.sidebar && navigator.userAgent.toLowerCase().indexOf('firefox') > -1) || (window.opera && window.print)) {
+            var a = document.createElement('a');
+            a.href = url;
+            a.title = title;
+            a.rel = 'sidebar';
+            a.click();
+        } else if (window.external && ('AddFavorite' in window.external)) { // IE Favorites
+            window.external.AddFavorite(url, title);
+        } else { // Other browsers (mainly WebKit - Chrome/Safari)
+            alert('Press ' + (navigator.userAgent.toLowerCase().indexOf('mac') !== -1 ? 'Cmd' : 'Ctrl') + '+D to bookmark this page.');
+        }
+    }
+</script>
+<!-- Social Sharing Buttons -->
+</body>
+</html>
